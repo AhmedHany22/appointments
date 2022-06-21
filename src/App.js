@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>All Appointments</h1>
+        <h1 className="text-3xl font-bold underline">All Appointments</h1>
       </div>
     );
   }
