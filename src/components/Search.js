@@ -45,7 +45,7 @@ const DropDown = ({ toggle }) => {
   );
 };
 
-const Search = () => {
+const Search = ({ query, onQueryChange }) => {
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -59,7 +59,8 @@ const Search = () => {
           type="text"
           name="query"
           id="query"
-          value=""
+          value={query}
+          onChange={(e) => onQueryChange(e.target.value)}
           className="h-10 pl-8 rounded-md w-full sm:text-sm border-gray-100"
           placeholder="Search..."
         />

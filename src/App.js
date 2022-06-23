@@ -8,6 +8,18 @@ import AppointmentList from "./components/AppointmentList";
 const App = () => {
   let [appointments, setAppointments] = useState([]);
 
+  let [query, setQuery] = useState("");
+
+  const filteredAppointments = appointments.filter((item) => {
+    return (
+      item.petName.toLowerCase().includes(query.toLowerCase()) ||
+      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+      item.aptNotes.toLowerCase().includes(query.toLowerCase())
+    );
+  });
+
+  const onQueryChange = (myQuery) => setQuery(myQuery);
+
   const fetchData = useCallback(() => {
     fetch("./data.json")
       .then((response) => response.json())
@@ -34,9 +46,9 @@ const App = () => {
           All Appointments
         </h1>
         <AddAppointment />
-        <Search />
+        <Search query={query} onQueryChange={onQueryChange} />
         <AppointmentList
-          list={appointments}
+          list={filteredAppointments}
           onDeleteAppointment={onDeleteAppointment}
         />
       </div>
