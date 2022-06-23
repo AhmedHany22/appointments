@@ -1,6 +1,6 @@
 import { BiTrash } from "react-icons/bi";
 
-const AppointmentList = ({ list }) => {
+const AppointmentList = ({ list, onDeleteAppointment }) => {
   return (
     <ul className="divide-y divide-gray-200">
       {list.map((appointment) => (
@@ -8,6 +8,7 @@ const AppointmentList = ({ list }) => {
           <button
             type="button"
             className="p-1.5 mr-1.5 mt-1 rounded text-white bg-red-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            onClick={() => onDeleteAppointment(appointment.id)}
           >
             <BiTrash />
           </button>

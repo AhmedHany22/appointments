@@ -20,6 +20,12 @@ const App = () => {
     fetchData();
   }, [fetchData]);
 
+  const onDeleteAppointment = (appointmentId) => {
+    setAppointments(
+      appointments.filter((appointment) => appointment.id !== appointmentId)
+    );
+  };
+
   return (
     <div className="App-header px-2">
       <div className="App mt-20 font-thin">
@@ -29,7 +35,10 @@ const App = () => {
         </h1>
         <AddAppointment />
         <Search />
-        <AppointmentList list={appointments} />
+        <AppointmentList
+          list={appointments}
+          onDeleteAppointment={onDeleteAppointment}
+        />
       </div>
     </div>
   );
