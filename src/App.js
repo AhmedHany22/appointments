@@ -7,18 +7,28 @@ import AppointmentList from "./components/AppointmentList";
 
 const App = () => {
   let [appointments, setAppointments] = useState([]);
-
+  let [sortBy, setSortBy] = useState("petName");
+  let [orderBy, setOrderBy] = useState("asc");
   let [query, setQuery] = useState("");
 
-  const filteredAppointments = appointments.filter((item) => {
-    return (
-      item.petName.toLowerCase().includes(query.toLowerCase()) ||
-      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
-      item.aptNotes.toLowerCase().includes(query.toLowerCase())
-    );
-  });
+  const filteredAppointments = appointments
+    .filter((item) => {
+      return (
+        item.petName.toLowerCase().includes(query.toLowerCase()) ||
+        item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+        item.aptNotes.toLowerCase().includes(query.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      let order = orderBy === "asc" ? 1 : -1;
+      return a[sortBy].toLowerCase() < b[sortBy].toLowerCase()
+        ? -1 * order
+        : 1 * order;
+    });
 
   const onQueryChange = (myQuery) => setQuery(myQuery);
+  const onOrderByChange = (mySort) => setOrderBy(mySort);
+  const onSortByChange = (mySort) => setSortBy(mySort);
 
   const fetchData = useCallback(() => {
     fetch("./data.json")
@@ -46,7 +56,14 @@ const App = () => {
           All Appointments
         </h1>
         <AddAppointment />
-        <Search query={query} onQueryChange={onQueryChange} />
+        <Search
+          query={query}
+          onQueryChange={onQueryChange}
+          orderBy={orderBy}
+          onOrderByChange={onOrderByChange}
+          sortBy={sortBy}
+          onSortByChange={onSortByChange}
+        />
         <AppointmentList
           list={filteredAppointments}
           onDeleteAppointment={onDeleteAppointment}
