@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BiCalendar } from "react-icons/bi";
 import Search from "./components/Search";
+import AddAppointment from "./components/AddAppointment";
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends Component {
             All Appointments
           </h1>
           <Search />
+          <AddAppointment />
         </div>
       </div>
     );
