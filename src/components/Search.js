@@ -16,6 +16,7 @@ const DropDown = () => {
       >
         {orderBy.map((option) => (
           <div
+            key={option}
             className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
             role="menuitem"
           >
