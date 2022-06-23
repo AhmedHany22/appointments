@@ -1,10 +1,9 @@
-import appointmentList from "../data.json";
 import { BiTrash } from "react-icons/bi";
 
-const AppointmentList = () => {
+const AppointmentList = ({ list }) => {
   return (
     <ul className="divide-y divide-gray-200">
-      {appointmentList.map((appointment) => (
+      {list.map((appointment) => (
         <li className="px-3 py-3 flex items-start" key={appointment.id}>
           <button
             type="button"
