@@ -30,3 +30,8 @@ body {
 .AddAppointment label {
   color: #fff;
 }
+
+ul {
+  color: #fff;
+  text-align: left;
+}

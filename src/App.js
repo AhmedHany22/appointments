@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { BiCalendar } from "react-icons/bi";
+
 import Search from "./components/Search";
 import AddAppointment from "./components/AddAppointment";
-
+import AppointmentList from "./components/AppointmentList";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,9 @@ class App extends Component {
             <BiCalendar className="inline-block text-red-400 align-center" />
             All Appointments
           </h1>
-          <Search />
           <AddAppointment />
+          <Search />
+          <AppointmentList />
         </div>
       </div>
     );
