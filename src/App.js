@@ -48,6 +48,17 @@ const App = () => {
     );
   };
 
+  const onSendAppointment = (myAppointment) => {
+    setAppointments([...appointments, myAppointment]);
+  };
+
+  const lastId = () => {
+    appointments.reduce(
+      (max, item) => (Number(item.id) > max ? Number(item.id) : max),
+      0
+    );
+  };
+
   return (
     <div className="App-header px-2">
       <div className="App mt-20 font-thin">
@@ -55,7 +66,7 @@ const App = () => {
           <BiCalendar className="inline-block text-red-400 align-center" />
           All Appointments
         </h1>
-        <AddAppointment />
+        <AddAppointment onSendAppointment={onSendAppointment} lastId={lastId} />
         <Search
           query={query}
           onQueryChange={onQueryChange}
